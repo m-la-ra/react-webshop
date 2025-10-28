@@ -3,15 +3,19 @@ function cartReducer(state, action) {
     case "ADD_ITEM": {
       const { item, variant, quantity } = action.payload;
       const itemKey = `${item.id}-${JSON.stringify(variant)}`;
-      const itemExists = state.items.find((item) => item.itemKey === itemKey);
+      const itemExists = state.items.find(
+        (cartItem) => cartItem.itemKey === itemKey
+      );
+
+      if (!item || !item.id) return state;
 
       if (itemExists) {
         return {
           ...state,
-          items: state.items.map((item) =>
-            item.itemKey === itemKey
-              ? { ...item, quantity: item.quantity + quantity }
-              : item
+          items: state.items.map((cartItem) =>
+            cartItem.itemKey === itemKey
+              ? { ...cartItem, quantity: cartItem.quantity + 1 }
+              : cartItem
           ),
         };
       }
@@ -22,22 +26,23 @@ function cartReducer(state, action) {
     }
     case "REMOVE_ITEM": {
       const { itemKey } = action.payload;
+
       return {
         ...state,
         items: state.items
-          .map((item) =>
-            item.itemKey === itemKey
-              ? { ...item, quantity: item.quantity - 1 }
-              : item
+          .map((cartItem) =>
+            cartItem.itemKey === itemKey
+              ? { ...cartItem, quantity: cartItem.quantity - 1 }
+              : cartItem
           )
-          .filter((item) => item.quantity > 0),
+          .filter((cartItem) => cartItem.quantity > 0),
       };
     }
     case "DELETE_ITEM":
       return {
         ...state,
         items: state.items.filter(
-          (item) => item.itemKey !== action.payload.itemKey
+          (cartItem) => cartItem.itemKey !== action.payload.itemKey
         ),
       };
     case "CLEAR":
