@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 
 const CartStateContext = createContext();
-const state = "Testing context";
+const state = "items";
 export function CartProvider({ children }) {
   return (
     <CartStateContext.Provider value={state}>

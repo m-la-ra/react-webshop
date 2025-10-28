@@ -1,0 +1,16 @@
+@use './variables.scss';
+
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    background-color: dimgrey;
+    padding: 16px;
+    
+    button {
+        padding: 8px;
+        span {
+            font-weight: bold;
+            font-size: 20px;
+        }
+    }
+}
