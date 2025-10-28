@@ -20,6 +20,19 @@ function cartReducer(state, action) {
         items: [...state.items, { itemKey, item, variant, quantity }],
       };
     }
+    case "REMOVE_ITEM": {
+      const { itemKey, quantity } = action.payload;
+      return {
+        ...state,
+        items: state.items
+          .map((item) =>
+            item.itemKey === itemKey
+              ? { ...item, quantity: item.quantity - quantity }
+              : item
+          )
+          .filter((item) => item.quantity > 0),
+      };
+    }
     case "CLEAR":
       return { items: [] };
     default:
