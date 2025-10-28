@@ -21,18 +21,25 @@ function cartReducer(state, action) {
       };
     }
     case "REMOVE_ITEM": {
-      const { itemKey, quantity } = action.payload;
+      const { itemKey } = action.payload;
       return {
         ...state,
         items: state.items
           .map((item) =>
             item.itemKey === itemKey
-              ? { ...item, quantity: item.quantity - quantity }
+              ? { ...item, quantity: item.quantity - 1 }
               : item
           )
           .filter((item) => item.quantity > 0),
       };
     }
+    case "DELETE_ITEM":
+      return {
+        ...state,
+        items: state.items.filter(
+          (item) => item.itemKey !== action.payload.itemKey
+        ),
+      };
     case "CLEAR":
       return { items: [] };
     default:

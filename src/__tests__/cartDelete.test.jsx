@@ -8,7 +8,7 @@ import {
 const wrapper = ({ children }) => <CartProvider>{children}</CartProvider>;
 
 describe("CartContext", () => {
-  it("should remove items from the cart", () => {
+  it("should delete items from the cart", () => {
     const { result } = renderHook(
       () => {
         const state = useCartContext();
@@ -35,7 +35,7 @@ describe("CartContext", () => {
         payload: {
           item: { id: 1, name: "Philips hue bulb", price: "500" },
           variant: { color: "white", power: 6.5 },
-          quantity: 2,
+          quantity: 3,
         },
       });
     });
@@ -45,16 +45,7 @@ describe("CartContext", () => {
 
     act(() => {
       result.current.dispatch({
-        type: "REMOVE_ITEM",
-        payload: { itemKey: addedItemKeyTwo },
-      });
-    });
-
-    expect(result.current.state.items[1].quantity).toBe(1);
-
-    act(() => {
-      result.current.dispatch({
-        type: "REMOVE_ITEM",
+        type: "DELETE_ITEM",
         payload: { itemKey: addedItemKeyOne },
       });
     });
@@ -63,15 +54,16 @@ describe("CartContext", () => {
     expect(result.current.state.items[0]).toMatchObject({
       item: { id: 1, name: "Philips hue bulb", price: "500" },
       variant: { color: "white", power: 6.5 },
-      quantity: 1,
+      quantity: 3,
     });
 
     act(() => {
       result.current.dispatch({
-        type: "REMOVE_ITEM",
+        type: "DELETE_ITEM",
         payload: { itemKey: addedItemKeyTwo },
       });
     });
+
     expect(result.current.state.items).toHaveLength(0);
   });
 });
