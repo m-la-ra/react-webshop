@@ -19,7 +19,7 @@ const ProductList = () => {
   return (
     <section className="item-list">
       {items.map((item) => (
-        <ProductCard item={item} />
+        <ProductCard item={item} key={item.id}/>
       ))}
     </section>
   );
