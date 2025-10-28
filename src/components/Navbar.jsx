@@ -1,14 +1,16 @@
 import { Link } from "react-router";
-import { useCart } from "../contexts/storeContext";
+import { useCartContext } from "../contexts/storeContext";
 import "../scss/navbar.scss";
 
 function Navbar() {
-  const cartContext = useCart();
+  const cartContext = useCartContext();
 
   return (
     <nav className="navbar">
       <Link to="/checkout">
-        <button>Cart <span>{cartContext}</span></button>
+        <button>
+          Cart <span>1</span>
+        </button>
       </Link>
     </nav>
   );

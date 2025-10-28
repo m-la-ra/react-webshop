@@ -3,11 +3,10 @@ import ProductList from "./ProductList";
 import Cart from "./Cart";
 import ProductDetails from "./ProductDetails";
 import Navbar from "./Navbar";
-import { useCart } from "../contexts/storeContext";
-
+import { useCartContext } from "../contexts/storeContext";
 
 function App() {
-  const cartContext = useCart();
+  const cartContext = useCartContext();
 
   return (
     <>
