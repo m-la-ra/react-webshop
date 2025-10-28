@@ -7,7 +7,7 @@ export async function fetchData() {
     }
 
     const responseData = await response.json();
-    console.log(responseData.items);
+
     return responseData.items;
   } catch (error) {
     console.log("Error:", error);
