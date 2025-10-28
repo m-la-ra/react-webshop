@@ -1,9 +1,24 @@
 import { Link } from "react-router";
 import { useCartContext } from "../contexts/storeContext";
 import "../scss/navbar.scss";
+import { useEffect, useState } from "react";
 
 function Navbar() {
   const cartCounter = useCartContext();
+  const [quantity, setQuantity] = useState(0);
+
+  function handleQuantity() {
+    const cartSum = cartCounter.items.reduce(
+      (sum, item) => sum + item.quantity,
+      0
+    );
+    setQuantity(cartSum);
+  }
+
+  useEffect(() => {
+    handleQuantity();
+  }, [cartCounter]);
+
   return (
     <nav className="navbar">
       <Link to="/checkout">
@@ -16,7 +31,6 @@ function Navbar() {
             width="20px"
             height="20px"
             viewBox="0 0 902.86 902.86"
-          
           >
             <g>
               <g>
@@ -37,8 +51,7 @@ function Navbar() {
             </g>
           </svg>
           <span>
-            {cartCounter.items &&
-              cartCounter.items.map((item) => <p>{item.quantity}</p>)}
+            {quantity}
           </span>
         </button>
       </Link>

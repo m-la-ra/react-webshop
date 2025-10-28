@@ -4,9 +4,7 @@ import Cart from "./Cart";
 import ProductDetails from "./ProductDetails";
 import Navbar from "./Navbar";
 
-
 function App() {
-
   return (
     <>
     <Navbar />

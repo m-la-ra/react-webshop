@@ -1,8 +1,9 @@
 function cartReducer(state, action) {
   switch (action.type) {
+
     case "ADD_ITEM": {
       const { item, variant, quantity } = action.payload;
-      const itemKey = `${item.id}-${JSON.stringify(variant)}`;
+      const itemKey = `${item.id}-${variant.color.toString()}`;
       const itemExists = state.items.find(
         (cartItem) => cartItem.itemKey === itemKey
       );
@@ -24,6 +25,7 @@ function cartReducer(state, action) {
         items: [...state.items, { itemKey, item, variant, quantity }],
       };
     }
+
     case "REMOVE_ITEM": {
       const { itemKey } = action.payload;
 
@@ -38,6 +40,7 @@ function cartReducer(state, action) {
           .filter((cartItem) => cartItem.quantity > 0),
       };
     }
+
     case "DELETE_ITEM":
       return {
         ...state,
@@ -45,6 +48,7 @@ function cartReducer(state, action) {
           (cartItem) => cartItem.itemKey !== action.payload.itemKey
         ),
       };
+      
     case "CLEAR":
       return { items: [] };
     default:
