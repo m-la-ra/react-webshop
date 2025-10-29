@@ -7,12 +7,12 @@ import Navbar from "./Navbar";
 function App() {
   return (
     <>
-    <Navbar />
-    <Routes>
-      <Route path="/" element={<ProductList />} />
-      <Route path="/checkout" element={<Cart />} />
-      <Route path="/product/:id" element={<ProductDetails />} />
-    </Routes>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<ProductList />} />
+        <Route path="/checkout" element={<Cart />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
+      </Routes>
     </>
   );
 }

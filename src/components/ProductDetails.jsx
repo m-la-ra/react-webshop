@@ -133,6 +133,7 @@ const ProductDetails = () => {
       <Link to="/">
         <button className="back-button">&larr; Back</button>
       </Link>
+      <h1>Product details</h1>
       <section className="item-details">
         <article className="item-details__card">
           <picture>

@@ -1,4 +1,4 @@
-@use './variables.scss';
+@use "./variables.scss";
 
 .item {
   &__card {
@@ -30,7 +30,15 @@
     }
 
     button {
+      padding: 16px;
+      border: 2px solid #191919;
+      border-radius: 50vh;
+      min-width: 120px;
+      background-color: #fff;
       cursor: pointer;
+      margin-top: 16px;
+      margin-right: 16px;
+      font-weight: 700;
     }
   }
 }

@@ -3,18 +3,19 @@
 .checkout {
   max-width: 960px;
   margin: 0 auto;
+  padding: 0 16px;
   .checkout-content {
-    display: grid;
-    grid-auto-rows: auto;
-    place-items: center;
-    gap: 8px;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin: 16px;
     &__card {
       background-color: #dbdbdbb4;
       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
       border-radius: 16px;
       width: 100%;
-      max-width: 768px;
+      max-width: 992px;
       padding: 48px;
 
       &-colors {
@@ -40,6 +41,7 @@
 
       button {
         cursor: pointer;
+        margin-left: 0;
       }
     }
 
@@ -48,8 +50,13 @@
         margin-top: 12px;
       }
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(1, 1fr);
       grid-template-rows: 1fr;
+      gap: 8px;
+
+      @media (min-width: 600px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
   }
 }
