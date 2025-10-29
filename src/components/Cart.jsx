@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { useCartContext, useCartDispatch } from "../contexts/storeContext";
+import sanitizeItemName from "../helpers/sanitizeItemName";
 import "../scss/cart.scss";
 
 function Cart() {
@@ -28,7 +29,7 @@ function Cart() {
               <div className="checkout-content__text">
                 <div>
                   <h2>
-                    {content.item.brand} {content.item.name}
+                    {sanitizeItemName(content.item.brand, content.item.name)}
                   </h2>
                   <p>Quantity: {content.quantity}</p>
                 </div>

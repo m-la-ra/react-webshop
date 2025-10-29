@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { fetchItemById } from "../api/fetchData";
 import { useCartDispatch, useCartContext } from "../contexts/storeContext";
 import { Link } from "react-router";
+import sanitizeItemName from "../helpers/sanitizeItemName";
 import "../scss/productDetails.scss";
 
 const ProductDetails = () => {
@@ -140,8 +141,7 @@ const ProductDetails = () => {
           </picture>
 
           <div className="item-details__card-text">
-            <h2>{item.brand}</h2>
-            <p>{item.name}</p>
+            <h2>{sanitizeItemName(item.brand, item.name)}</h2>
             <p>Price: {item.price} SEK</p>
             <p>Weight: {item.weight} kg</p>
             <div className="item-details__card-colors">
