@@ -7,15 +7,15 @@
   .checkout-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 16px;
     margin: 16px;
     &__card {
       background-color: #dbdbdbb4;
       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
       border-radius: 16px;
-      width: 100%;
-      max-width: 992px;
+      width: 80%;
+      max-width: 960px;
       padding: 48px;
 
       &-colors {
