@@ -39,13 +39,16 @@ const ProductDetails = () => {
   if (!item) return <h1>Loading...</h1>;
 
   const variants = item.options || [];
+
   const selectedVariant = variants[variantIndex] || {};
-  const isVariantAvailable =
-    item.available && (selectedVariant.quantity || 0) > 0;
+
+  const isVariantAvailable = (selectedVariant.quantity || 0) > 0;
+
   const variantOptions = {
     ...(selectedVariant.power && { power: selectedVariant.power }),
     ...(selectedVariant.storage && { storage: selectedVariant.storage }),
   };
+
   let defaultOption;
 
   if (!selectedOption) {
@@ -59,6 +62,7 @@ const ProductDetails = () => {
   }
 
   const selectedItem = item.options[variantIndex];
+
   const itemKey = `${item.id}-${selectedItem.color.toString()}-${
     selectedOption ?? defaultOption
   }`;
@@ -204,11 +208,17 @@ const ProductDetails = () => {
                 : "Out of stock"}
             </p>
 
-            <button onClick={handleAddItem} className="button--add">
+            <button
+              onClick={handleAddItem}
+              disabled={!isVariantAvailable}
+              className="button--add"
+            >
               +
             </button>
-            <button onClick={handleRemoveItem}>-</button>
-            <button onClick={handleDeleteItem} className="button--delete">
+            <button onClick={handleRemoveItem}>
+              -
+            </button>
+            <button onClick={handleDeleteItem} className="button--delete"> 
               <svg
                 width="24px"
                 height="24px"

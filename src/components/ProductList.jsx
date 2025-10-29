@@ -9,11 +9,14 @@ const ProductList = () => {
   if (!inventory || inventory.length === 0) return <div>Loading...</div>;
 
   return (
-    <section className="item-list">
-      {inventory.map((item) => (
-        <ProductCard item={item} key={item.id} />
-      ))}
-    </section>
+    <>
+      <h1>Products</h1>
+      <section className="item-list">
+        {inventory.map((item) => (
+          <ProductCard item={item} key={item.id} />
+        ))}
+      </section>
+    </>
   );
 };
 

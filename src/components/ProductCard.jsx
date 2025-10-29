@@ -1,10 +1,13 @@
 import { Link } from "react-router";
-import '../scss/productCard.scss'
+import "../scss/productCard.scss";
 
 const ProductCard = ({ item }) => {
-
   if (!item) return null;
+  function isItemAvailable(item) {
+    return item.options?.some((option) => (option.quantity || 0) > 0);
+  }
 
+  console.log(isItemAvailable);
   return (
     <article className="item__card">
       <picture>
@@ -20,7 +23,7 @@ const ProductCard = ({ item }) => {
         <h2>{item.brand}</h2>
         <p>{item.name}</p>
         <p>{item.price} SEK</p>
-    
+
         <div className="item__card-colors">
           {item.options &&
             item.options.map((option, index) => (
@@ -32,7 +35,7 @@ const ProductCard = ({ item }) => {
             ))}
         </div>
 
-        <p>{item.available ? "In stock" : "Out of stock"}</p>
+        <p>{isItemAvailable(item) ? "In stock" : "Out of stock"}</p>
 
         <Link to={`/product/${item.id}`}>
           <button type="button">Details</button>

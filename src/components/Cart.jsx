@@ -11,13 +11,32 @@ function Cart() {
     cartDispatch({ type: "CLEAR" });
   }
 
+  function handleSetQuantity(content, itemQuantity) {
+    const updatedQuantity = Math.max(0, Number(itemQuantity));
+
+    if (updatedQuantity === 0) {
+      cartDispatch({
+        type: "DELETE_ITEM",
+        payload: { itemKey: content.itemKey },
+      });
+    } else {
+      cartDispatch({
+        type: "SET_QUANTITY",
+        payload: { itemKey: content.itemKey, quantity: updatedQuantity },
+      });
+    }
+  }
+
   return (
     <section className="checkout">
       <Link to="/">
         <button className="back-button">&larr; Back</button>
       </Link>
 
-      <button className="back-button back-button--clear" onClick={handleClearCart}>
+      <button
+        className="back-button back-button--clear"
+        onClick={handleClearCart}
+      >
         Clear all items
       </button>
 
@@ -31,7 +50,13 @@ function Cart() {
                   <h2>
                     {sanitizeItemName(content.item.brand, content.item.name)}
                   </h2>
-                  <p>Quantity: {content.quantity}</p>
+                  <p>Quantity:</p>
+                  <input
+                    type="number"
+                    min="0"
+                    value={content.quantity}
+                    onChange={(e) => handleSetQuantity(content, e.target.value)}
+                  />
                 </div>
                 <div>
                   <p>Color: {content.variant.color}</p>
