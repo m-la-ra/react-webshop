@@ -1,0 +1,55 @@
+@use "./variables.scss";
+
+.checkout {
+  max-width: 960px;
+  margin: 0 auto;
+  .checkout-content {
+    display: grid;
+    grid-auto-rows: auto;
+    place-items: center;
+    gap: 8px;
+
+    &__card {
+      background-color: #dbdbdbb4;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 768px;
+      padding: 48px;
+
+      &-colors {
+        display: flex;
+        gap: 4px;
+      }
+      &-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 50vh;
+        border: 2px solid #191919;
+      }
+
+      picture {
+        display: flex;
+        img {
+          border-radius: 16px 16px 0 0;
+          width: 100%;
+          max-height: 200px;
+          object-fit: cover;
+        }
+      }
+
+      button {
+        cursor: pointer;
+      }
+    }
+
+    &__text {
+      h2 {
+        margin-top: 12px;
+      }
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 1fr;
+    }
+  }
+}

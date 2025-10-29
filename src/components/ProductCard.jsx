@@ -1,10 +1,14 @@
 import { Link } from "react-router";
-import '../scss/productCard.scss'
+import "../scss/productCard.scss";
+
 const ProductCard = ({ item }) => {
   if (!item) return null;
+  function isItemAvailable(item) {
+    return item.options?.some((option) => (option.quantity || 0) > 0);
+  }
 
   return (
-    <article className="item__card" key={item.id}>
+    <article className="item__card">
       <picture>
         <img
           srcSet="https://placehold.co/300x300 480w, https://placehold.co/300x300 800w"
@@ -15,6 +19,7 @@ const ProductCard = ({ item }) => {
       </picture>
 
       <div className="item__card-text">
+        <h2>{item.brand}</h2>
         <p>{item.name}</p>
         <p>{item.price} SEK</p>
 
@@ -29,7 +34,7 @@ const ProductCard = ({ item }) => {
             ))}
         </div>
 
-        <p>{item.available ? "In stock" : "Out of stock"}</p>
+        <p>{isItemAvailable(item) ? "In stock" : "Out of stock"}</p>
 
         <Link to={`/product/${item.id}`}>
           <button type="button">Details</button>
