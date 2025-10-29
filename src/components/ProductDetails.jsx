@@ -133,6 +133,7 @@ const ProductDetails = () => {
       <Link to="/">
         <button className="back-button">&larr; Back</button>
       </Link>
+      <h1>Product details</h1>
       <section className="item-details">
         <article className="item-details__card">
           <picture>
@@ -151,23 +152,21 @@ const ProductDetails = () => {
             <div className="item-details__card-colors">
               {variants &&
                 variants.map((option, index) => (
-                  <div>
-                    <div
-                      key={index}
-                      className={
-                        index === variantIndex
-                          ? "item-details__card-color item-details__card-color--selected"
-                          : "item-details__card-color "
-                      }
-                      style={
-                        option.quantity > 0
-                          ? { backgroundColor: option.color }
-                          : { backgroundColor: option.color, opacity: 0.5 }
-                      }
-                      onClick={() => setVariantIndex(index)}
-                      title={`Color: ${option.color}`}
-                    />
-                  </div>
+                  <div
+                    key={index}
+                    className={
+                      index === variantIndex
+                        ? "item-details__card-color item-details__card-color--selected"
+                        : "item-details__card-color "
+                    }
+                    style={
+                      option.quantity > 0
+                        ? { backgroundColor: option.color }
+                        : { backgroundColor: option.color, opacity: 0.5 }
+                    }
+                    onClick={() => setVariantIndex(index)}
+                    title={`Color: ${option.color}`}
+                  />
                 ))}
             </div>
 
@@ -180,8 +179,8 @@ const ProductDetails = () => {
                   value={selectedOption}
                   onChange={(e) => setSelectedOption(e.target.value)}
                 >
-                  {variantOptions.power.map((alternative) => (
-                    <option>{alternative}W</option>
+                  {variantOptions.power.map((alternative, key) => (
+                    <option key={key}>{alternative}W</option>
                   ))}
                 </select>
               </>
@@ -195,8 +194,8 @@ const ProductDetails = () => {
                   value={selectedOption}
                   onChange={(e) => setSelectedOption(e.target.value)}
                 >
-                  {variantOptions.storage.map((alternative) => (
-                    <option>{alternative}GB</option>
+                  {variantOptions.storage.map((alternative, key) => (
+                    <option key={key}>{alternative}GB</option>
                   ))}
                 </select>
               </>
@@ -215,10 +214,8 @@ const ProductDetails = () => {
             >
               +
             </button>
-            <button onClick={handleRemoveItem}>
-              -
-            </button>
-            <button onClick={handleDeleteItem} className="button--delete"> 
+            <button onClick={handleRemoveItem}>-</button>
+            <button onClick={handleDeleteItem} className="button--delete">
               <svg
                 width="24px"
                 height="24px"

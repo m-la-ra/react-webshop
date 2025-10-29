@@ -6,7 +6,7 @@ import "../scss/cart.scss";
 function Cart() {
   const cartContext = useCartContext();
   const cartDispatch = useCartDispatch();
- 
+
   function handleClearCart() {
     cartDispatch({ type: "CLEAR" });
   }
@@ -65,7 +65,9 @@ function Cart() {
                 </div>
                 <div>
                   <p>Color: {content.variant.color}</p>
-                  <p>{content.selectedOption}</p>
+                  {content.selectedOption && (
+                    <p>Option: {content.selectedOption}</p>
+                  )}
                   <p>Total: {content.quantity * content.item.price} SEK</p>
                 </div>
               </div>
