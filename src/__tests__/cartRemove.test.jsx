@@ -23,6 +23,7 @@ describe("CartContext", () => {
         type: "ADD_ITEM",
         payload: {
           item: { id: 5, name: "Bluetooth speaker", price: "800" },
+          itemKey: "5-red",
           variant: { color: "red" },
           quantity: 1,
         },
@@ -34,7 +35,9 @@ describe("CartContext", () => {
         type: "ADD_ITEM",
         payload: {
           item: { id: 1, name: "Philips hue bulb", price: "500" },
-          variant: { color: "white", power: 6.5 },
+          itemKey: "1-white-6.5W",
+          selectedOption: "6.5W",
+          variant: { color: "white", power: "6.5W" },
           quantity: 2,
         },
       });
@@ -62,7 +65,9 @@ describe("CartContext", () => {
     expect(result.current.state.items).toHaveLength(1);
     expect(result.current.state.items[0]).toMatchObject({
       item: { id: 1, name: "Philips hue bulb", price: "500" },
-      variant: { color: "white", power: 6.5 },
+      itemKey: "1-white-6.5W",
+      selectedOption: "6.5W",
+      variant: { color: "white", power: "6.5W" },
       quantity: 1,
     });
 
