@@ -25,11 +25,14 @@ export function CartProvider({ children }) {
         const inventoryArray = items.map((item) => ({
           id: item.id,
           name: item.name,
+          brand: item.brand,
           price: item.price,
           available: item.available,
           options: item.options.map((variant) => ({
             color: variant.color,
             quantity: variant.quantity,
+            power: variant.power,
+            storage: variant.storage,
           })),
         }));
 

@@ -1,9 +1,8 @@
 function cartReducer(state, action) {
   switch (action.type) {
-
     case "ADD_ITEM": {
-      const { item, variant, quantity } = action.payload;
-      const itemKey = `${item.id}-${variant.color.toString()}`;
+      const { item, itemKey, variant, quantity, selectedOption } = action.payload;
+
       const itemExists = state.items.find(
         (cartItem) => cartItem.itemKey === itemKey
       );
@@ -15,20 +14,23 @@ function cartReducer(state, action) {
           ...state,
           items: state.items.map((cartItem) =>
             cartItem.itemKey === itemKey
-              ? { ...cartItem, quantity: cartItem.quantity + 1 }
+              ? { ...cartItem, quantity: cartItem.quantity + 1, selectedOption }
               : cartItem
           ),
         };
       }
       return {
         ...state,
-        items: [...state.items, { itemKey, item, variant, quantity }],
+        items: [
+          ...state.items,
+          { itemKey, item, variant, quantity, selectedOption },
+        ],
       };
     }
 
     case "REMOVE_ITEM": {
       const { itemKey } = action.payload;
-
+   
       return {
         ...state,
         items: state.items
@@ -48,7 +50,7 @@ function cartReducer(state, action) {
           (cartItem) => cartItem.itemKey !== action.payload.itemKey
         ),
       };
-      
+
     case "CLEAR":
       return { items: [] };
     default:

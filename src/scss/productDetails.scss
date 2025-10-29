@@ -38,7 +38,9 @@
         object-fit: cover;
       }
     }
-
+    select {
+      margin: 16px 0 0;
+    }
     button {
       width: 30px;
       height: 30px;
@@ -46,7 +48,7 @@
       border: 1px solid #f7f7f7;
       border-radius: 4px;
       background-color: #878584;
-      
+
       &.button--delete {
         background-color: #fc1c03;
         width: 60px;
@@ -55,7 +57,7 @@
         align-items: center;
       }
       &.button--add {
-        background-color: #77ad72
+        background-color: #77ad72;
       }
       &.button--disabled {
         opacity: 0.5;

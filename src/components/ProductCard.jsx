@@ -17,6 +17,7 @@ const ProductCard = ({ item }) => {
       </picture>
 
       <div className="item__card-text">
+        <h2>{item.brand}</h2>
         <p>{item.name}</p>
         <p>{item.price} SEK</p>
     

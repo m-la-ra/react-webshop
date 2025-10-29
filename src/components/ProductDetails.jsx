@@ -8,6 +8,7 @@ import "../scss/productDetails.scss";
 const ProductDetails = () => {
   const { id } = useParams();
   const [variantIndex, setVariantIndex] = useState(0);
+  const [selectedOption, setSelectedOption] = useState(undefined);
   const [item, setItem] = useState(null);
 
   const cartContext = useCartContext();
@@ -40,6 +41,26 @@ const ProductDetails = () => {
   const selectedVariant = variants[variantIndex] || {};
   const isVariantAvailable =
     item.available && (selectedVariant.quantity || 0) > 0;
+  const variantOptions = {
+    ...(selectedVariant.power && { power: selectedVariant.power }),
+    ...(selectedVariant.storage && { storage: selectedVariant.storage }),
+  };
+  let defaultOption;
+
+  if (!selectedOption) {
+    if (variantOptions.power) {
+      defaultOption = `${variantOptions.power[0].toString()}W`;
+    }
+
+    if (variantOptions.storage) {
+      defaultOption = `${variantOptions.storage[0]}GB`;
+    }
+  }
+
+  const selectedItem = item.options[variantIndex];
+  const itemKey = `${item.id}-${selectedItem.color.toString()}-${
+    selectedOption ?? defaultOption
+  }`;
 
   function handleAddItem() {
     if (!isVariantAvailable) return;
@@ -55,15 +76,19 @@ const ProductDetails = () => {
 
     cartDispatch({
       type: "ADD_ITEM",
-      payload: { item, variant: updatedVariants[variantIndex], quantity: 1 },
+      payload: {
+        item,
+        variant: updatedVariants[variantIndex],
+        itemKey,
+        quantity: 1,
+        selectedOption: selectedOption ?? defaultOption,
+      },
     });
   }
 
   function handleRemoveItem() {
     if (!item) return;
 
-    const selectedItem = item.options[variantIndex];
-    const itemKey = `${item.id}-${selectedItem.color.toString()}`;
     cartDispatch({ type: "REMOVE_ITEM", payload: { itemKey } });
 
     const updatedVariants = [...item.options];
@@ -80,9 +105,6 @@ const ProductDetails = () => {
 
   function handleDeleteItem() {
     if (!item) return;
-
-    const selectedItem = item.options[variantIndex];
-    const itemKey = `${item.id}-${selectedItem.color.toString()}`;
 
     const cartItem = cartContext.items.find(
       (cartItem) => cartItem.itemKey === itemKey
@@ -118,28 +140,64 @@ const ProductDetails = () => {
           </picture>
 
           <div className="item-details__card-text">
+            <h2>{item.brand}</h2>
             <p>{item.name}</p>
-            <p>{item.price} SEK</p>
+            <p>Price: {item.price} SEK</p>
+            <p>Weight: {item.weight} kg</p>
             <div className="item-details__card-colors">
               {variants &&
                 variants.map((option, index) => (
-                  <div
-                    key={index}
-                    className={
-                      index === variantIndex
-                        ? "item-details__card-color item-details__card-color--selected"
-                        : "item-details__card-color "
-                    }
-                    style={
-                      option.quantity > 0
-                        ? { backgroundColor: option.color }
-                        : { backgroundColor: option.color, opacity: 0.5 }
-                    }
-                    onClick={() => setVariantIndex(index)}
-                    title={`Color: ${option.color}`}
-                  />
+                  <div>
+                    <div
+                      key={index}
+                      className={
+                        index === variantIndex
+                          ? "item-details__card-color item-details__card-color--selected"
+                          : "item-details__card-color "
+                      }
+                      style={
+                        option.quantity > 0
+                          ? { backgroundColor: option.color }
+                          : { backgroundColor: option.color, opacity: 0.5 }
+                      }
+                      onClick={() => setVariantIndex(index)}
+                      title={`Color: ${option.color}`}
+                    />
+                  </div>
                 ))}
             </div>
+
+            {variantOptions.power && (
+              <>
+                <label htmlFor="power-options">Power: </label>
+                <select
+                  name="power-options"
+                  id="power-menu"
+                  value={selectedOption}
+                  onChange={(e) => setSelectedOption(e.target.value)}
+                >
+                  {variantOptions.power.map((alternative) => (
+                    <option>{alternative}W</option>
+                  ))}
+                </select>
+              </>
+            )}
+            {variantOptions.storage && (
+              <>
+                <label htmlFor="storage-options">Storage: </label>
+                <select
+                  name="storage-options"
+                  id="storage-menu"
+                  value={selectedOption}
+                  onChange={(e) => setSelectedOption(e.target.value)}
+                >
+                  {variantOptions.storage.map((alternative) => (
+                    <option>{alternative}GB</option>
+                  ))}
+                </select>
+              </>
+            )}
+
             <p>
               {variants[variantIndex].quantity
                 ? `In stock:  ${variants[variantIndex].quantity} available`
