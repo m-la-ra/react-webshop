@@ -1,31 +1,53 @@
 import { Link } from "react-router";
-import { useCartContext } from "../contexts/storeContext";
+import { useCartContext, useCartDispatch } from "../contexts/storeContext";
 import "../scss/cart.scss";
 
 function Cart() {
   const cartContext = useCartContext();
-  
+  const cartDispatch = useCartDispatch();
+
+  function handleClearCart() {
+    cartDispatch({ type: "CLEAR" });
+  }
+
   return (
-    <div>
+    <section className="checkout">
       <Link to="/">
-        <button>Back</button>
+        <button className="back-button">&larr; Back</button>
       </Link>
-      <div className="cart-content">
+
+      <button className="back-button back-button--clear" onClick={handleClearCart}>
+        Clear all items
+      </button>
+
+      <h1>Checkout</h1>
+      <div className="checkout-content">
         {cartContext &&
           cartContext.items.map((content, key) => (
-            <article className="cart-content__card" key={key}>
-              <p>{content.item.name}</p>
-              <p>Quantity: {content.quantity}</p>
-              <p>Color: {content.variant.color}</p>
-              <p>{content.selectedOption}</p>
-              <p>Total: {content.quantity * content.item.price} SEK</p>
+            <article className="checkout-content__card" key={key}>
+              <div className="checkout-content__text">
+                <div>
+                  <h2>
+                    {content.item.brand} {content.item.name}
+                  </h2>
+                  <p>Quantity: {content.quantity}</p>
+                </div>
+                <div>
+                  <p>Color: {content.variant.color}</p>
+                  <p>{content.selectedOption}</p>
+                  <p>Total: {content.quantity * content.item.price} SEK</p>
+                </div>
+              </div>
+
               <Link to={`/product/${content.item.id}`}>
-                <button>Back to product page</button>
+                <button className="back-button">
+                  &larr; Back to product page
+                </button>
               </Link>
             </article>
           ))}
       </div>
-    </div>
+    </section>
   );
 }
 

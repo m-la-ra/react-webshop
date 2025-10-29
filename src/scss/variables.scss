@@ -12,5 +12,11 @@ $black: #191919;
   background-color: #fff;
   cursor: pointer;
   margin-top: 16px;
-  margin-left: 16px;
+  margin-right: 16px;
+  font-weight: 700;
+  &--clear {
+    background-color: rgb(231, 26, 26);
+    color: #fff;
+
+  }
 }

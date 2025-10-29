@@ -7,15 +7,15 @@ function Navbar() {
   const cartCounter = useCartContext();
   const [quantity, setQuantity] = useState(0);
 
-  function handleQuantity() {
-    const cartSum = cartCounter.items.reduce(
-      (sum, item) => sum + item.quantity,
-      0
-    );
-    setQuantity(cartSum);
-  }
-
   useEffect(() => {
+    function handleQuantity() {
+      const cartSum = cartCounter.items.reduce(
+        (sum, item) => sum + item.quantity,
+        0
+      );
+      setQuantity(cartSum);
+    }
+
     handleQuantity();
   }, [cartCounter]);
 
@@ -50,9 +50,7 @@ function Navbar() {
               </g>
             </g>
           </svg>
-          <span>
-            {quantity}
-          </span>
+          <span>{quantity}</span>
         </button>
       </Link>
     </nav>
