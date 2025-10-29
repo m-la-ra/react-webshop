@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import sanitizeItemName from "../helpers/sanitizeItemName";
 import "../scss/productCard.scss";
 
 const ProductCard = ({ item }) => {
@@ -11,16 +12,13 @@ const ProductCard = ({ item }) => {
     <article className="item__card">
       <picture>
         <img
-          srcSet="https://placehold.co/300x300 480w, https://placehold.co/300x300 800w"
-          sizes="(width <= 600px) 480px, 800px"
-          src="https://placehold.co/300x300"
+          src="https://placehold.co/480x480"
           alt={item.name}
         />
       </picture>
 
       <div className="item__card-text">
-        <h2>{item.brand}</h2>
-        <p>{item.name}</p>
+        <h2>{sanitizeItemName(item.brand, item.name)}</h2>
         <p>{item.price} SEK</p>
 
         <div className="item__card-colors">
