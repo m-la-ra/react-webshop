@@ -6,13 +6,18 @@ import "../scss/cart.scss";
 function Cart() {
   const cartContext = useCartContext();
   const cartDispatch = useCartDispatch();
-
+ 
   function handleClearCart() {
     cartDispatch({ type: "CLEAR" });
   }
 
   function handleSetQuantity(content, itemQuantity) {
-    const updatedQuantity = Math.max(0, Number(itemQuantity));
+    const newQuantity = Math.max(0, Number(itemQuantity));
+
+    const originalQuantity =
+      content.variant.originalQuantity ?? content.quantity;
+
+    const updatedQuantity = Math.min(newQuantity, originalQuantity);
 
     if (updatedQuantity === 0) {
       cartDispatch({

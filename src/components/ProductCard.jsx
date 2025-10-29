@@ -7,7 +7,6 @@ const ProductCard = ({ item }) => {
     return item.options?.some((option) => (option.quantity || 0) > 0);
   }
 
-  console.log(isItemAvailable);
   return (
     <article className="item__card">
       <picture>
