@@ -5,6 +5,22 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     &-text {
       padding: 16px;
+      display: flex;
+      flex-flow: column nowrap;
+
+      @media (min-width: 768px) {
+        min-height: 280px;
+      }
+      @media (min-width: 1248px) {
+        min-height: 320px;
+      }
+
+      h2 {
+        font-size: 16px;
+        @media (min-width: 1248px) {
+          font-size: 24px;
+        }
+      }
     }
     &-colors {
       display: flex;
@@ -31,6 +47,10 @@
       margin-top: 16px;
       margin-right: 16px;
       font-weight: 700;
+    }
+
+    a:link {
+      margin-top: auto;
     }
   }
 }
