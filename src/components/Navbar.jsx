@@ -4,23 +4,37 @@ import "../scss/navbar.scss";
 import { useEffect, useState } from "react";
 
 function Navbar() {
-  const cartCounter = useCartContext();
+  const cartContent = useCartContext();
   const [quantity, setQuantity] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     function handleQuantity() {
-      const cartSum = cartCounter.items.reduce(
+      const cartSum = cartContent.items.reduce(
         (sum, item) => sum + item.quantity,
         0
       );
       setQuantity(cartSum);
     }
 
+    function calculateTotalPrice() {
+      const cartTotal = cartContent.items.reduce(
+        (sum, item) => sum + Number(item.item.price) * item.quantity,
+        0
+      );
+      setTotalPrice(cartTotal);
+    }
+
     handleQuantity();
-  }, [cartCounter]);
+    calculateTotalPrice();
+  }, [cartContent]);
 
   return (
     <nav className="navbar">
+      {totalPrice > 0 && (
+        <span className="navbar__total">Total {totalPrice} SEK</span>
+      )}
+
       <Link to="/checkout">
         <button>
           <svg

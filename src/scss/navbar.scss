@@ -3,10 +3,18 @@
 .navbar {
     display: flex;
     justify-content: flex-end;
-    background-color: dimgrey;
+    align-items: center;
+    background-color: #373535;
     padding: 16px;
     a:link, a:visited {
         text-decoration: none;
+    }
+
+    &__total {
+        font-weight: 800;
+        font-size: 24px;
+        color: #e6e4df;
+        margin-right: 24px;
     }
     button {
         padding: 12px 24px;

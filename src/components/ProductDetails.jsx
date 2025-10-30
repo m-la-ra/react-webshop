@@ -137,7 +137,7 @@ const ProductDetails = () => {
       <section className="item-details">
         <article className="item-details__card">
           <picture>
-            <img src="https://placehold.co/480x480" alt={item.name} />
+            <img src="https://placehold.co/480x480" alt={item.name} loading="lazy"/>
           </picture>
 
           <div className="item-details__card-text">
