@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import {sanitizeItemName} from "../helpers/sanitizeItemName";
+import { sanitizeItemName } from "../helpers/sanitizeItemName";
 import "../scss/productCard.scss";
 
 const ProductCard = ({ item }) => {
@@ -11,10 +11,7 @@ const ProductCard = ({ item }) => {
   return (
     <article className="item__card">
       <picture>
-        <img
-          src="https://placehold.co/480x480"
-          alt={item.name}
-        />
+        <img src="https://placehold.co/480x480" alt={item.name} />
       </picture>
 
       <div className="item__card-text">

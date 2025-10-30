@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { useCartContext, useCartDispatch } from "../contexts/storeContext";
-import {sanitizeItemName} from "../helpers/sanitizeItemName";
+import { sanitizeItemName } from "../helpers/sanitizeItemName";
 import "../scss/cart.scss";
 
 function Cart() {

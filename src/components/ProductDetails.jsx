@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import { fetchItemById } from "../api/fetchData";
 import { useCartDispatch, useCartContext } from "../contexts/storeContext";
 import { Link } from "react-router";
-import {sanitizeItemName} from "../helpers/sanitizeItemName";
+import { sanitizeItemName } from "../helpers/sanitizeItemName";
 import "../scss/productDetails.scss";
 
 const ProductDetails = () => {
@@ -137,10 +137,7 @@ const ProductDetails = () => {
       <section className="item-details">
         <article className="item-details__card">
           <picture>
-         <img
-          src="https://placehold.co/480x480"
-          alt={item.name}
-        />
+            <img src="https://placehold.co/480x480" alt={item.name} />
           </picture>
 
           <div className="item-details__card-text">
