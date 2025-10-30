@@ -39,12 +39,14 @@ function Cart() {
         <button className="back-button">&larr; Back</button>
       </Link>
 
-      <button
-        className="back-button back-button--clear"
-        onClick={handleClearCart}
-      >
-        Clear all items
-      </button>
+      {cartContext.items.length > 0 && (
+        <button
+          className="back-button back-button--clear"
+          onClick={handleClearCart}
+        >
+          Clear all items
+        </button>
+      )}
 
       <div className="checkout-content">
         {cartContext &&
@@ -86,6 +88,7 @@ function Cart() {
               </Link>
             </article>
           ))}
+        {cartContext.items.length === 0 && <h2>No items in cart</h2>}
       </div>
     </section>
   );
