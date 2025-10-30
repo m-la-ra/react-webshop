@@ -47,6 +47,10 @@
       &.button--add {
         background-color: #77ad72;
       }
+
+      &:active {
+        transform: scale(0.95);
+      }
     }
   }
   .item-color {
