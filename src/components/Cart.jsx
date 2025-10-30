@@ -34,6 +34,7 @@ function Cart() {
 
   return (
     <section className="checkout">
+      <h1>Checkout</h1>
       <Link to="/">
         <button className="back-button">&larr; Back</button>
       </Link>
@@ -45,7 +46,6 @@ function Cart() {
         Clear all items
       </button>
 
-      <h1>Checkout</h1>
       <div className="checkout-content">
         {cartContext &&
           cartContext.items.map((content, key) => (

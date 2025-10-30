@@ -129,15 +129,20 @@ const ProductDetails = () => {
   }
 
   return (
-    <>
+    <section>
+      <h1>Product details</h1>
       <Link to="/">
         <button className="back-button">&larr; Back</button>
       </Link>
-      <h1>Product details</h1>
+
       <section className="item-details">
         <article className="item-details__card">
           <picture>
-            <img src="https://placehold.co/480x480" alt={item.name} loading="lazy"/>
+            <img
+              src="https://placehold.co/480x480"
+              alt={item.name}
+              loading="lazy"
+            />
           </picture>
 
           <div className="item-details__card-text">
@@ -229,7 +234,7 @@ const ProductDetails = () => {
           </div>
         </article>
       </section>
-    </>
+    </section>
   );
 };
 
