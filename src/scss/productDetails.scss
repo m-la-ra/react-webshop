@@ -15,17 +15,6 @@
       display: flex;
       gap: 4px;
     }
-    &-color {
-      width: 12px;
-      height: 12px;
-      border-radius: 50vh;
-      border: 2px solid #191919;
-      cursor: pointer;
-
-      &--selected {
-        border: 4px solid #191919;
-      }
-    }
 
     picture {
       display: flex;
@@ -38,6 +27,7 @@
     }
     select {
       margin: 16px 0 0;
+      cursor: pointer;
     }
     button {
       width: 30px;
@@ -57,10 +47,9 @@
       &.button--add {
         background-color: #77ad72;
       }
-      &.button--disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
     }
+  }
+  .item-color {
+    cursor: pointer;
   }
 }

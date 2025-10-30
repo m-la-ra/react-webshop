@@ -156,8 +156,8 @@ const ProductDetails = () => {
                     key={index}
                     className={
                       index === variantIndex
-                        ? "item-details__card-color item-details__card-color--selected"
-                        : "item-details__card-color "
+                        ? "item-color item-color--selected"
+                        : "item-color"
                     }
                     style={
                       option.quantity > 0

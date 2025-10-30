@@ -64,7 +64,14 @@ function Cart() {
                   />
                 </div>
                 <div>
-                  <p>Color: {content.variant.color}</p>
+                  <p>
+                    Color:&nbsp;
+                    <span
+                      className="item-color"
+                      style={{ backgroundColor: content.variant.color }}
+                    />
+                  </p>
+
                   {content.selectedOption && (
                     <p>Option: {content.selectedOption}</p>
                   )}

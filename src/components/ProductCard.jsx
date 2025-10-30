@@ -23,7 +23,7 @@ const ProductCard = ({ item }) => {
             item.options.map((option, index) => (
               <div
                 key={index}
-                className="item-list__card-color"
+                className="item-color"
                 style={{ backgroundColor: option.color }}
               />
             ))}
