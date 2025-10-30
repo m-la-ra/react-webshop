@@ -4,13 +4,13 @@ import "../scss/navbar.scss";
 import { useEffect, useState } from "react";
 
 function Navbar() {
-  const cartContent = useCartContext();
+  const cartContext = useCartContext();
   const [quantity, setQuantity] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     function handleQuantity() {
-      const cartSum = cartContent.items.reduce(
+      const cartSum = cartContext.items.reduce(
         (sum, item) => sum + item.quantity,
         0
       );
@@ -18,7 +18,7 @@ function Navbar() {
     }
 
     function calculateTotalPrice() {
-      const cartTotal = cartContent.items.reduce(
+      const cartTotal = cartContext.items.reduce(
         (sum, item) => sum + Number(item.item.price) * item.quantity,
         0
       );
@@ -27,7 +27,7 @@ function Navbar() {
 
     handleQuantity();
     calculateTotalPrice();
-  }, [cartContent]);
+  }, [cartContext]);
 
   return (
     <nav className="navbar">
