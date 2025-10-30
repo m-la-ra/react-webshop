@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import sanitizeItemName from "../helpers/sanitizeItemName";
+import {sanitizeItemName} from "../helpers/sanitizeItemName";
 import "../scss/productCard.scss";
 
 const ProductCard = ({ item }) => {

@@ -1,22 +1,13 @@
-function sanitizeItemName(brand, name) {
-  if (!brand || !name) return name || "";
+export const stringToLowerCase = (string) => string.toLowerCase();
 
-  brand.trim();
-  name.trim();
+export function sanitizeItemName(brand, name) {
+  const combinedString = stringToLowerCase(name).includes(
+    stringToLowerCase(brand)
+  )
+    ? `${brand} ${stringToLowerCase(name)
+        .replace(stringToLowerCase(brand), ``)
+        .trim()}`
+    : `${brand} ${name}`;
 
-  const escapedBrand = brand.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const regex = new RegExp(`\\b${escapedBrand}\\b`, "i");
-
-  if (regex.test(name)) {
-    name = name
-      .replace(regex, "")
-      .replace(/\s{2,}/g, " ")
-      .trim();
-  }
-
-  const sanitizedName = `${brand} ${name}`;
-
-  return sanitizedName
+  return combinedString;
 }
-
-export default sanitizeItemName;

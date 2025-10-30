@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import { fetchItemById } from "../api/fetchData";
 import { useCartDispatch, useCartContext } from "../contexts/storeContext";
 import { Link } from "react-router";
-import sanitizeItemName from "../helpers/sanitizeItemName";
+import {sanitizeItemName} from "../helpers/sanitizeItemName";
 import "../scss/productDetails.scss";
 
 const ProductDetails = () => {
