@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { useCartContext, useCartDispatch } from "../contexts/storeContext";
-import sanitizeItemName from "../helpers/sanitizeItemName";
+import { sanitizeItemName } from "../helpers/sanitizeItemName";
 import "../scss/cart.scss";
 
 function Cart() {
@@ -34,6 +34,7 @@ function Cart() {
 
   return (
     <section className="checkout">
+      <h1>Checkout</h1>
       <Link to="/">
         <button className="back-button">&larr; Back</button>
       </Link>
@@ -45,7 +46,6 @@ function Cart() {
         Clear all items
       </button>
 
-      <h1>Checkout</h1>
       <div className="checkout-content">
         {cartContext &&
           cartContext.items.map((content, key) => (
@@ -64,7 +64,14 @@ function Cart() {
                   />
                 </div>
                 <div>
-                  <p>Color: {content.variant.color}</p>
+                  <p>
+                    Color:&nbsp;
+                    <span
+                      className="item-color"
+                      style={{ backgroundColor: content.variant.color }}
+                    />
+                  </p>
+
                   {content.selectedOption && (
                     <p>Option: {content.selectedOption}</p>
                   )}

@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import { fetchItemById } from "../api/fetchData";
 import { useCartDispatch, useCartContext } from "../contexts/storeContext";
 import { Link } from "react-router";
-import sanitizeItemName from "../helpers/sanitizeItemName";
+import { sanitizeItemName } from "../helpers/sanitizeItemName";
 import "../scss/productDetails.scss";
 
 const ProductDetails = () => {
@@ -129,18 +129,20 @@ const ProductDetails = () => {
   }
 
   return (
-    <>
+    <section>
+      <h1>Product details</h1>
       <Link to="/">
         <button className="back-button">&larr; Back</button>
       </Link>
-      <h1>Product details</h1>
+
       <section className="item-details">
         <article className="item-details__card">
           <picture>
-         <img
-          src="https://placehold.co/480x480"
-          alt={item.name}
-        />
+            <img
+              src="https://placehold.co/480x480"
+              alt={item.name}
+              loading="lazy"
+            />
           </picture>
 
           <div className="item-details__card-text">
@@ -154,8 +156,8 @@ const ProductDetails = () => {
                     key={index}
                     className={
                       index === variantIndex
-                        ? "item-details__card-color item-details__card-color--selected"
-                        : "item-details__card-color "
+                        ? "item-color item-color--selected"
+                        : "item-color"
                     }
                     style={
                       option.quantity > 0
@@ -232,7 +234,7 @@ const ProductDetails = () => {
           </div>
         </article>
       </section>
-    </>
+    </section>
   );
 };
 
