@@ -31,6 +31,7 @@ export function CartProvider({ children }) {
           options: item.options.map((variant) => ({
             color: variant.color,
             quantity: variant.quantity,
+            originalQuantity: variant.quantity,
             power: variant.power,
             storage: variant.storage,
           })),

@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { fetchItemById } from "../api/fetchData";
-import { useCartDispatch, useCartContext } from "../contexts/storeContext";
+import {
+  useCartDispatch,
+  useCartContext,
+  useInventoryContext,
+} from "../contexts/storeContext";
 import { Link } from "react-router";
 import { sanitizeItemName } from "../helpers/sanitizeItemName";
 import "../scss/productDetails.scss";
@@ -14,27 +17,13 @@ const ProductDetails = () => {
 
   const cartContext = useCartContext();
   const cartDispatch = useCartDispatch();
+  const inventoryContext = useInventoryContext();
+  const inventory = inventoryContext ? Object.values(inventoryContext) : [];
+  const currentItemById = inventory.find((item) => item.id === Number(id));
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetchItemById(id);
-
-        const itemById = {
-          ...data,
-          options: data.options.map((variant) => ({
-            ...variant,
-            originalQuantity: variant.quantity,
-          })),
-        };
-
-        setItem(itemById || { options: [] });
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, [id]);
+    setItem(currentItemById);
+  }, [currentItemById]);
 
   if (!item) return <h1>Loading...</h1>;
 

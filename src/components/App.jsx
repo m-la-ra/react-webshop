@@ -3,7 +3,7 @@ import ProductList from "./ProductList";
 import Cart from "./Cart";
 import ProductDetails from "./ProductDetails";
 import Navbar from "./Navbar";
-import "../scss/variables.scss";
+import "../scss/app.scss";
 
 function App() {
   return (

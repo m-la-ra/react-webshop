@@ -13,8 +13,3 @@ export async function fetchData() {
     console.log("Error:", error);
   }
 }
-
-export async function fetchItemById(id) {
-  const items = await fetchData();
-  return items.find((item) => item.id === Number(id));
-}

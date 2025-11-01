@@ -12,11 +12,9 @@ function Cart() {
   }
 
   function handleSetQuantity(content, itemQuantity) {
+
     const newQuantity = Math.max(0, Number(itemQuantity));
-
-    const originalQuantity =
-      content.variant.originalQuantity ?? content.quantity;
-
+    const originalQuantity = content.variant.originalQuantity;
     const updatedQuantity = Math.min(newQuantity, originalQuantity);
 
     if (updatedQuantity === 0) {

@@ -23,6 +23,7 @@
         display: flex;
         gap: 4px;
       }
+
       &-color {
         width: 12px;
         height: 12px;
@@ -32,6 +33,7 @@
 
       picture {
         display: flex;
+
         img {
           border-radius: 16px 16px 0 0;
           width: 100%;
@@ -48,6 +50,7 @@
     }
 
     &__text {
+      
       p {
         font-weight: 800;
       }

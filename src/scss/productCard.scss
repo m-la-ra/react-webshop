@@ -3,6 +3,7 @@
     background-color: #f7f7f7;
     border-radius: 16px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
     &-text {
       padding: 16px;
       display: flex;
@@ -11,6 +12,7 @@
       @media (min-width: 768px) {
         min-height: 280px;
       }
+
       @media (min-width: 1248px) {
         min-height: 320px;
       }
@@ -22,6 +24,7 @@
         }
       }
     }
+    
     &-colors {
       display: flex;
       gap: 4px;
@@ -29,6 +32,7 @@
 
     picture {
       display: flex;
+
       img {
         border-radius: 16px 16px 0 0;
         width: 100%;
