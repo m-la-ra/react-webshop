@@ -8,14 +8,9 @@ const CartDispatchContext = createContext();
 const InventoryContext = createContext();
 const InventoryDispatchContext = createContext();
 
-const initialInventory = [];
-
 export function CartProvider({ children }) {
   const [cartState, cartDispatch] = useReducer(cartReducer, { items: [] });
-  const [inventoryState, inventoryDispatch] = useReducer(
-    inventoryReducer,
-    initialInventory
-  );
+  const [inventoryState, inventoryDispatch] = useReducer(inventoryReducer);
 
   useEffect(() => {
     const initializeInventory = async () => {
